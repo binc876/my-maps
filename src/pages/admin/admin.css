@@ -1,0 +1,38 @@
+.alumni-list-card {
+    padding: 50px;
+    border-radius: 10px;
+    border: 2px solid black;
+    box-shadow: 5px 5px black;
+    position: relative;
+    overflow: hidden;
+}
+
+.verif-list-card {
+    padding: 50px;
+    border-radius: 10px;
+    border: 2px solid black;
+    box-shadow: 5px 5px black;
+    position: relative;
+    overflow: hidden;
+}
+
+@media screen and (min-width: 992px) {
+    .verif-list-card {
+        margin-left: 30px;
+    }
+}
+
+.alumni-item p {
+    font-size: 15px;
+    margin-bottom: 1px;
+}
+
+.alumni-item .alumni-card {
+    margin: 1px;
+}
+
+.alumni-card {
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid black;
+}

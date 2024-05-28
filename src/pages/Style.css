@@ -1,0 +1,105 @@
+/* STYLE HOMEPAGE */
+.homepage .btn {
+    border: none;
+}
+
+.hero {
+    width: 100%;
+}
+
+p {
+    font-size: 20px;
+}
+
+.logo {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+@media screen and (max-width: 992px) {
+    .hero {
+        width: 30%;
+    }
+    h1 {
+        font-size: 35px;
+    }
+    p {
+        font-size: 18px;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    h1 {
+        font-size: 33px;
+    }
+    p {
+        font-size: 16px;
+    }
+}
+/* STYLE HOMEPAGE */
+
+/* STYLE LOGIN */
+.login-alumni {
+    padding-left: 10%;
+    padding-right: 10%;
+}
+.login-alumni .login-card {
+    padding: 50px;
+    border-radius: 10px;
+    border: 2px solid black;
+    box-shadow: 5px 5px black;
+    position: relative;
+    overflow: hidden;
+}
+
+.login-alumni input {
+    background-color: #D9D9D9;
+}
+
+.login-alumni button {
+    background-color: #605DC8;
+    border-color: #605DC8;
+    color: white;
+}
+
+.login-alumni .fgt-pass p {
+    font-size: 15px;
+    color: gray;
+}
+
+.login-alumni .fgt-pass button {
+    background-color: #EA3F23;
+    border-color: #EA3F23;
+    color: white;
+}
+
+.login-alumni .hero {
+    width: 100%;
+    padding-left: 10%;
+    display: block;
+    margin-inline: auto;
+}
+
+.profile-alumni-card {
+    padding: 50px;
+    border-radius: 10px;
+    border: 2px solid black;
+    box-shadow: 5px 5px black;
+    position: relative;
+    overflow: hidden;
+}
+
+.profile-alumni-card .col {
+    padding: 10px;
+}
+
+.profile-alumni-card .row {
+    margin: 5px 3px;
+}
+
+.profile-alumni-card .data-style {
+    /* padding: 20px; */
+    border: 1px;
+    border-radius: 10px;
+    background-color: #D9D9D9;
+}

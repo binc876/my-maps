@@ -1,0 +1,14 @@
+.navbar .logos {
+    margin-right: 10px;
+    width: 35px;
+    height: 35px;
+}
+
+.navbar .nav-link:hover {
+    color: #646cffaa;
+    font-weight: bold;
+}
+
+.navbar .nav-link.active {
+    background-color: #646cffaa;
+}
