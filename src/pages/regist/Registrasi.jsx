@@ -20,6 +20,8 @@ export default function Registrasi() {
   const [email, setEmail] = useState()
   const [password, setPassword] = useState()
 
+  const [error, setError] = useState()
+
   useEffect(() => {
     console.log('Name:', name);
     console.log('Graduation Year:', graduationYear);
@@ -39,7 +41,20 @@ export default function Registrasi() {
   const handleLatitude = (event) => setLatitude(event.target.value);
   const handleLongitude = (event) => setLongitude(event.target.value);
   const handleEmail = (event) => setEmail(event.target.value);
-  const handlePassword = (event) => setPassword(event.target.value);
+  
+  const handlePassword = (event) => {
+    const valuePass = event.target.value
+    setPassword(valuePass)
+
+    //validasi password
+    const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,20}$/
+
+    if (!regex.test(valuePass)) {
+      setError('Please pay attention to the rules for writing passwords!')
+    } else {
+      setError('')
+    }
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -110,7 +125,13 @@ export default function Registrasi() {
                   <Form.Control onInput={handleEmail} type='email' placeholder='Email'/>
                 </Form.Group>
                 <Form.Group>
-                  <Form.Control onInput={handlePassword} type='password' placeholder='Password'/>
+                  <Form.Control
+                    onInput={handlePassword}
+                    type='password'
+                    placeholder='Password'
+                    style={{borderColor: error ? 'red' : ''}}
+                  />
+                  {error && <Form.Text id='passwordHelpBlock' style={{color: 'red'}}>{error}<br/></Form.Text>}
                   <Form.Text id="passwordHelpBlock" muted>
                     Your password must be 8-20 characters long, contain letters and numbers,
                     and must not contain spaces, special characters, or emoji.
@@ -119,7 +140,6 @@ export default function Registrasi() {
                 <Button type='submit'>Create an Account</Button>
               </Form>
 
-              {/* <Button onClick={() => navigate('/login-alumni')}>Creat an Account</Button> */}
             </Col>
             <Col lg='6' className='pt-lg-0 pt-5'>
               <img className='hero' src={heroRegistrasi}/>

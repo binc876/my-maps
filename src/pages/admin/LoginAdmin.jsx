@@ -1,5 +1,6 @@
 import { Container, Row, Col, Form, Button } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
+import { useState } from 'react'
 
 import welcomeAdmin from '../../assets/welcomeAdmin.svg'
 
@@ -7,6 +8,21 @@ import '../../pages/Style.css'
 
 export default function LoginAdmin() {
   const navigate = useNavigate()
+
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [errMsg, setErrMsg] = useState('')
+
+  const handleLogin = () => {
+    const validEmail = 'admin@gmail.com'
+    const validPassword = 'admin123'
+
+    if (email === validEmail && password === validPassword) {
+      navigate('/dashboard-admin')
+    } else {
+      setErrMsg('Email/password not valid')
+    }
+  }
 
   return (
     <div className='login-alumni'>
@@ -19,14 +35,30 @@ export default function LoginAdmin() {
 
               <Form className='mb-3'>
                 <Form.Group className='mb-3'>
-                  <Form.Control type='email' id='' placeholder='Email'/>
+                  <Form.Control 
+                    type='email' 
+                    id='adminMail' 
+                    placeholder='Email'
+                    onChange={(e) => setEmail(e.target.value)}
+                    value={email}
+                    required
+                  />
                 </Form.Group>
                 <Form.Group>
-                  <Form.Control type='password' placeholder='Password'/>
+                  <Form.Control 
+                    type='password' 
+                    id='adminPassword'
+                    placeholder='Password'
+                    onChange={(e) => setPassword(e.target.value)}
+                    value={password}
+                    required
+                  />
                 </Form.Group>
               </Form>
 
-              <Button variant='success' onClick={() => navigate('/dashboard-admin')}>Login Admin</Button>
+              {errMsg && <p style={{color: 'red'}}>{errMsg}</p>}
+
+              <Button variant='success' onClick={handleLogin}>Login Admin</Button>
             </Col>
             <Col lg='6' className='pt-lg-0 pt-5'>
               <img className='hero' src={welcomeAdmin}/>
