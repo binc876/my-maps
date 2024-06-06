@@ -1,5 +1,5 @@
 import { Button, Col, Container, Form, Row } from 'react-bootstrap'
-// import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 import heroRegistrasi from '../../assets/heroRegistrasi.svg'
 
@@ -9,7 +9,7 @@ import axios from 'axios'
 import { env } from '../../../config'
 
 export default function Registrasi() {
-  // const navigate = useNavigate()
+  const navigate = useNavigate()
 
   const [name, setName] = useState()
   const [graduationYear, setGraduationYear] = useState()
@@ -41,7 +41,7 @@ export default function Registrasi() {
   const handleLatitude = (event) => setLatitude(event.target.value);
   const handleLongitude = (event) => setLongitude(event.target.value);
   const handleEmail = (event) => setEmail(event.target.value);
-  
+
   const handlePassword = (event) => {
     const valuePass = event.target.value
     setPassword(valuePass)
@@ -58,35 +58,29 @@ export default function Registrasi() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // console.log('Name:', name);
-    // console.log('Graduation Year:', graduationYear);
-    // console.log('Phone Number:', phoneNumber);
-    // console.log('Address:', address);
-    // console.log('Latitude:', latitude);
-    // console.log('Longitude:', longitude);
-    // console.log('Email:', email);
-    // console.log('Password:', password);
     const formData = new FormData();
     formData.append('name', name);
     formData.append('graduation_year', graduationYear);
     formData.append('mobile', phoneNumber);
     formData.append('address', address);
-    formData.append('latitude', latitude);
-    formData.append('longitude', longitude);
+    formData.append('lat', latitude);
+    formData.append('long', longitude);
     formData.append('email', email);
     formData.append('password', password);
     formData.append('password_confirmation', password);
-    // axios.post(env.BACKEND_URL + '/api/user/registration', formData).then((response) => {
-    //   console.log(response);
-    // }).catch((error) => {
-    //   console.log(error);
-    // })
     axios({
       "content-type": "multipart/form-data",
       url: env.BACKEND_URL + '/api/user/registration',
       method: 'post',
       data: formData
-    }).then((response) => {console.log(response)}).catch((error) => {console.log(error)})
+    }).then((response) => {
+      console.log(response)
+      localStorage.token = response.token
+      localStorage.user = JSON.stringify(response.data)
+      navigate('/dashboard')
+    }).catch((error) => {
+      console.log(error)
+    })
   }
 
   return (
