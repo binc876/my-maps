@@ -17,6 +17,12 @@ export const Profile = () => {
             }
         }).then((response) => {
             console.log(response.data)
+            let data = response.data.data
+
+            localStorage.setItem('token', data.token.access_token)
+            localStorage.setItem('email', JSON.stringify(data.email))
+            localStorage.setItem('name', JSON.stringify(data.name))
+            localStorage.setItem('id', JSON.stringify(data.id))
         }).catch((error) => {
             let errorData = error.response.data
             console.log(errorData)
