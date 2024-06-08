@@ -24,7 +24,7 @@ function App() {
         <Route path='/forgot-password' Component={ForgotPassword}/>
         <Route path='/verif-password' Component={VerifPassword}/>
         <Route element={<UserProfile/>}>
-          <Route path='/dashboard' Component={Dashboard}/>
+          <Route path='/dashboard' element={<Dashboard/>}/>
         </Route>
         <Route path='/profile-alumni' Component={ProfileAlumni}/>
         <Route path='/dashboard-admin' Component={DashboardAdmin}/>
