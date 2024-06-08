@@ -5,6 +5,8 @@ import { useState } from 'react'
 import welcomeAlumni from '../assets/welcomeAlumni.svg'
 import Logos from '../components/Logos'
 import '../pages/Style.css'
+import axios from 'axios'
+import { env } from '../../config'
 
 export default function LoginAlumni() {
   const navigate = useNavigate()
@@ -13,15 +15,30 @@ export default function LoginAlumni() {
   const [password, setPassword] = useState('')
   const [errMsg, setErrMsg] = useState('')
 
-  const handleLogin = () => {
-    const validEmail = 'alumni@gmail.com'
-    const validPassword = 'password123'
+  const sessionError = sessionStorage.getItem('error')
+  if (sessionError) {
+    setErrMsg(sessionError)
+    sessionStorage.removeItem('error')
+  }
 
-    if (email === validEmail && password === validPassword) {
+  const handleLogin = () => {
+    axios.post(env.BACKEND_URL+'/api/user/login', {
+      email: email,
+      password: password
+    }).then((response) => {
+      console.log(response)
+      let data = response.data.data
+
+      localStorage.setItem('token', data.token.access_token)
+      localStorage.setItem('email', JSON.stringify(data.email))
+      localStorage.setItem('name', JSON.stringify(data.name))
+      localStorage.setItem('id', JSON.stringify(data.id))
+
       navigate('/dashboard')
-    } else {
-      setErrMsg('Email/password not valid')
-    }
+    }).catch((error) => {
+      let errorData = error.response.data
+      setErrMsg(errorData.message)
+    })
   }
 
   return (
