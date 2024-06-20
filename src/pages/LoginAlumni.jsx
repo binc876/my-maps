@@ -76,12 +76,20 @@ export default function LoginAlumni() {
 
               {errMsg && <p style={{color: 'red'}}>{errMsg}</p>}
 
-              <Button variant='success' onClick={handleLogin}>Login Alumni</Button>
+              <Button className='btn-login' variant='success' onClick={handleLogin}>Login Alumni</Button>
 
-              <div className='fgt-pass mt-5'>
+              <div className='fgt-pass mt-3'>
                 <p>Forgot your account password?<br/>Change the password here..</p>
                 <Button variant='warning' onClick={() => navigate('/forgot-password')}>Forgot Password</Button>
               </div>
+
+              <center>
+              <Form.Group className='mt-4'>
+                <Form.Text>
+                  Did not have account yet? <Button size='sm' variant='warning' onClick={() => navigate('/registrasi')}>Register Now</Button>
+                </Form.Text>
+              </Form.Group>
+              </center>
             </Col>
             <Col lg='6' className='pt-lg-0 pt-5'>
               <img className='hero' src={welcomeAlumni}/>

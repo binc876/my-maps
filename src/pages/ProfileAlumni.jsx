@@ -69,7 +69,16 @@ export default function ProfileAlumni() {
         <div>
         <Container className='profile-alumni-card'>
           <center><h4 className='mb-4'>Account Information</h4></center>
-          <center><Image src={profile.user_detail.image_url} roundedCircle width={100} height={100}/></center>
+          <center>
+            <Image 
+              src={profile.user_detail.image_url} 
+              roundedCircle width={100} height={100}
+              onError={(e) => {
+                e.target.onError = null
+                e.target.src = 'https://i.pinimg.com/564x/28/c2/0b/28c20b3bf4e1a48334b2278d3c7fb447.jpg'
+              }}
+            />
+          </center>
           <Container className='mt-4 mb-4'>
             <Row>
               <Col>Name</Col>

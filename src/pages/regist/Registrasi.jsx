@@ -131,9 +131,16 @@ export default function Registrasi() {
                     and must not contain spaces, special characters, or emoji.
                   </Form.Text>
                 </Form.Group>
-                <Button type='submit'>Create an Account</Button>
+                <Button className='btn-regist' type='submit'>Create an Account</Button>
               </Form>
 
+              <center>
+              <Form.Group className='mt-3'>
+                <Form.Text>
+                  Already have account?  <Button size='sm' variant='warning' onClick={() => navigate('/login-alumni')}>Login Here</Button>
+                </Form.Text>
+              </Form.Group>
+              </center>
             </Col>
             <Col lg='6' className='pt-lg-0 pt-5'>
               <img className='hero' src={heroRegistrasi}/>
