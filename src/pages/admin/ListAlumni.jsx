@@ -1,26 +1,28 @@
 import { Col, Container, Row } from 'react-bootstrap'
+import { AlumniProvider } from '../../components/alumniList/AlumniContext'
 import NavbarAdmin from "../../components/navbar/NavbarAdmin"
-import AlumniCard from '../../components/AlumniCard'
-import AlumniVerification from '../../components/AlumniVerification'
-
+import AlumniTable from '../../components/alumniList/AlumniTable'
+import AlumniCard from '../../components/alumniList/AlumniCard'
 import './admin.css'
 
 export default function ListAlumni() {
   return (
+    <AlumniProvider>
     <div>
       <NavbarAdmin/>
       <Container className='mt-5'>
         <Row>
-          <Col md={8}>
+          <Col lg='8'>
             <center className='mb-3'><h4>Alumni List</h4></center>
-            <AlumniCard/>
+            <AlumniTable/>
           </Col>
-          <Col md={4}>
+          <Col lg='4'>
             <center><h5>Verify Alumni Registration</h5></center>
-            <AlumniVerification/>
+            <AlumniCard/>
           </Col>
         </Row>
       </Container>
     </div>
+    </AlumniProvider>
   )
 }

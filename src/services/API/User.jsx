@@ -12,7 +12,7 @@ export const Profile = () => {
     }
 
     useEffect(() => {
-        const fetchProfile = () => axios.get(env.BACKEND_URL+'/api/user', {
+        const fetchProfile = () => axios.get(env.BACKEND_URL+'/api/user/profile', {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('token')
             }

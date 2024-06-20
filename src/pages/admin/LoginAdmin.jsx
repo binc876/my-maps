@@ -3,8 +3,10 @@ import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 
 import welcomeAdmin from '../../assets/welcomeAdmin.svg'
-
+import Logos from '../../components/Logos'
 import '../../pages/Style.css'
+import axios from 'axios'
+import { env } from '../../../config'
 
 export default function LoginAdmin() {
   const navigate = useNavigate()
@@ -13,21 +15,37 @@ export default function LoginAdmin() {
   const [password, setPassword] = useState('')
   const [errMsg, setErrMsg] = useState('')
 
-  const handleLogin = () => {
-    const validEmail = 'admin@gmail.com'
-    const validPassword = 'admin123'
+  const sessionError = sessionStorage.getItem('error')
+  if (sessionError) {
+    setErrMsg(sessionError)
+    sessionStorage.removeItem('error')
+  }
 
-    if (email === validEmail && password === validPassword) {
+  const handleLogin = () => {
+    axios.post(env.BACKEND_URL + '/api/admin/login', {
+      email: email,
+      password: password
+    }).then((response) => {
+      console.log(response)
+      let data = response.data.data
+
+      localStorage.setItem('token', data.token.access_token)
+      localStorage.setItem('email', JSON.stringify(data.email))
+      localStorage.setItem('name', JSON.stringify(data.name))
+      localStorage.setItem('id', JSON.stringify(data.id))
+
       navigate('/dashboard-admin')
-    } else {
-      setErrMsg('Email/password not valid')
-    }
+    }).catch((error) => {
+      let errorData = error.response.data
+      setErrMsg(errorData.message)
+    })
   }
 
   return (
     <div className='login-alumni'>
       <header className='w-100 min-vh-100 d-flex align-items-center'>
         <Container>
+          <Logos/>
           <Row className='header-box d-flex align-items-center'>
             <Col lg='6' className='login-card'>
               <h1>Welcome to Aremanest club!</h1>
