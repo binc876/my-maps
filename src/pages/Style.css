@@ -42,6 +42,7 @@ p {
 .login-alumni {
     padding-left: 10%;
     padding-right: 10%;
+    background-color: #FAF7EB;
 }
 .login-alumni .login-card {
     padding: 50px;
@@ -56,7 +57,7 @@ p {
     background-color: #D9D9D9;
 }
 
-.login-alumni .btn-login {
+.login-alumni button {
     background-color: #605DC8;
     border-color: #605DC8;
     color: white;
@@ -87,6 +88,7 @@ p {
     box-shadow: 5px 5px black;
     position: relative;
     overflow: hidden;
+    background-color: #FAF7EB;
 }
 
 .profile-alumni-card .col {
@@ -102,4 +104,8 @@ p {
     border: 1px;
     border-radius: 10px;
     background-color: #D9D9D9;
+}
+
+.homepage {
+    background-color: #FAF7EB;
 }

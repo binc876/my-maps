@@ -8,7 +8,7 @@ import './admin.css'
 export default function ListAlumni() {
   return (
     <AlumniProvider>
-    <div>
+    <div className='alumni-list'>
       <NavbarAdmin/>
       <Container className='mt-5'>
         <Row>

@@ -6,7 +6,9 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <>
+    <view style={{backgroundColor: '#605DC8'}}>
     <App />
+    </view>
   </>
   // <React.StrictMode>
   //   <App />
