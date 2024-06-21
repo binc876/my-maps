@@ -4,6 +4,7 @@ import axios from 'axios'
 import { env } from '../../config'
 
 import NavbarAlumni from "../components/navbar/NavbarAlumni"
+import BottomNavbar from '../components/navbar/BottomNavbar'
 import './Style.css'
 
 export default function ProfileAlumni() {
@@ -122,6 +123,7 @@ export default function ProfileAlumni() {
           </Modal.Footer>
         </Modal>
         </div>
+        <BottomNavbar/>
     </div>
   )
 }

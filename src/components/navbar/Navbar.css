@@ -12,3 +12,16 @@
 .navbar .nav-link.active {
     background-color: #646cffaa;
 }
+
+.navbar p {
+    color: white;
+    font-size: 10px;
+}
+
+.navbar .vertical-line {
+    width: 2px;
+    height: 25px;
+    background-color: silver;
+    margin-left: 15px;
+    margin-right: 8px;
+}

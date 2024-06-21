@@ -1,5 +1,6 @@
 import { Col, Container, Image, Row } from 'react-bootstrap'
 import NavbarAdmin from '../../components/navbar/NavbarAdmin'
+import BottomNavbar from '../../components/navbar/BottomNavbar'
 
 export default function ProfileAdmin() {
   return (
@@ -23,6 +24,10 @@ export default function ProfileAdmin() {
           </Row>
         </Container>
       </Container>
+      <Container>
+        <a href="https://www.instagram.com/p/C7YYvQGpDuB/?utm_source=ig_embed&amp;utm_campaign=loading"/>
+      </Container>
+      <BottomNavbar/>
     </div>
   )
 }

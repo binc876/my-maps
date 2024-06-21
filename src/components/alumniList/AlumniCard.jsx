@@ -9,7 +9,7 @@ export default function AlumniCard() {
         {pendingAlumni.map(alumni => (
             <Card key={alumni.id} className='mb-3'>
               <CardBody>
-                <Card.Title><h3>{alumni.name}</h3></Card.Title>
+                <Card.Title><h4>{alumni.name}</h4></Card.Title>
                 <Card.Text>
                     <b>Email : </b>{alumni.email}<br/>
                     <b>Phone : </b>{alumni.userDetail.mobile}<br/>

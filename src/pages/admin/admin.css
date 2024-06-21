@@ -16,11 +16,11 @@
     overflow: hidden;
 }
 
-@media screen and (min-width: 992px) {
+/* @media screen and (min-width: 992px) {
     .verif-list-card {
         margin-left: 30px;
     }
-}
+} */
 
 .alumni-item p {
     font-size: 15px;

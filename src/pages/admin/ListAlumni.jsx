@@ -10,14 +10,14 @@ export default function ListAlumni() {
     <AlumniProvider>
     <div className='alumni-list'>
       <NavbarAdmin/>
-      <Container className='mt-5'>
+      <Container className='mt-4'>
         <Row>
           <Col lg='8'>
             <center className='mb-3'><h4>Alumni List</h4></center>
             <AlumniTable/>
           </Col>
           <Col lg='4'>
-            <center><h5>Verify Alumni Registration</h5></center>
+            <center className='mb-3'><h5>Verify Alumni Registration</h5></center>
             <AlumniCard/>
           </Col>
         </Row>

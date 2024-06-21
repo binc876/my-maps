@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import Logos from '../components/Logos'
 import heroKiri from '../assets/heroKiri.svg'
 import heroKanan from '../assets/heroKanan.svg'
+import BottomNavbar from '../components/navbar/BottomNavbar'
 
 import './Style.css'
 
@@ -49,6 +50,7 @@ export default function LandingPage() {
             </Row>
         </center>
         </header>
+        <BottomNavbar/>
     </div>
   )
 }
