@@ -5,6 +5,7 @@ import { env } from '../../config'
 
 import NavbarAlumni from "../components/navbar/NavbarAlumni"
 import BottomNavbar from '../components/navbar/BottomNavbar'
+import { InstagramCard } from '../components/InstagramCard'
 import './Style.css'
 
 export default function ProfileAlumni() {
@@ -68,60 +69,66 @@ export default function ProfileAlumni() {
     <div>
         <NavbarAlumni/>
         <div>
-        <Container className='profile-alumni-card'>
-          <center><h4 className='mb-4'>Account Information</h4></center>
-          <center>
-            <Image 
-              src={profile.user_detail.image_url} 
-              roundedCircle width={100} height={100}
-              onError={(e) => {
-                e.target.onError = null
-                e.target.src = 'https://i.pinimg.com/564x/28/c2/0b/28c20b3bf4e1a48334b2278d3c7fb447.jpg'
-              }}
-            />
-          </center>
-          <Container className='mt-4 mb-4'>
-            <Row>
-              <Col>Name</Col>
-              <Col className='data-style'>{profile.name}</Col>
-            </Row>
-            <Row>
-              <Col>Mobile</Col>
-              <Col className='data-style'>{profile.user_detail.mobile}</Col>
-            </Row>
-            <Row>
-              <Col>Email</Col>
-              <Col className='data-style'>{profile.email}</Col>
-            </Row>
-            <Row>
-              <Col>Graduation Year</Col>
-              <Col className='data-style'>{profile.user_detail.graduation_year}</Col>
-            </Row>
-            <Row>
-              <Col>Address</Col>
-              <Col className='data-style'>{profile.user_detail.address}</Col>
-            </Row>
-            <Row>
-              <Col>Latitude</Col>
-              <Col className='data-style'>{profile.user_detail.lat}</Col>
-            </Row>
-            <Row>
-              <Col>Longitude</Col>
-              <Col className='data-style'>{profile.user_detail.long}</Col>
-            </Row>
+          <Container className='profile-alumni-card'>
+            <center><h4 className='mb-4'>Account Information</h4></center>
+            <center>
+              <Image 
+                src={profile.user_detail.image_url} 
+                roundedCircle width={100} height={100}
+                onError={(e) => {
+                  e.target.onError = null
+                  e.target.src = 'https://i.pinimg.com/564x/28/c2/0b/28c20b3bf4e1a48334b2278d3c7fb447.jpg'
+                }}
+              />
+            </center>
+            <Container className='mt-4 mb-4'>
+              <Row>
+                <Col>Name</Col>
+                <Col className='data-style'>{profile.name}</Col>
+              </Row>
+              <Row>
+                <Col>Mobile</Col>
+                <Col className='data-style'>{profile.user_detail.mobile}</Col>
+              </Row>
+              <Row>
+                <Col>Email</Col>
+                <Col className='data-style'>{profile.email}</Col>
+              </Row>
+              <Row>
+                <Col>Graduation Year</Col>
+                <Col className='data-style'>{profile.user_detail.graduation_year}</Col>
+              </Row>
+              <Row>
+                <Col>Address</Col>
+                <Col className='data-style'>{profile.user_detail.address}</Col>
+              </Row>
+              <Row>
+                <Col>Latitude</Col>
+                <Col className='data-style'>{profile.user_detail.lat}</Col>
+              </Row>
+              <Row>
+                <Col>Longitude</Col>
+                <Col className='data-style'>{profile.user_detail.long}</Col>
+              </Row>
+            </Container>
+            <center><Button variant='danger' onClick={handleEditClick}>Edit</Button></center>
           </Container>
-          <center><Button variant='danger' onClick={handleEditClick}>Edit</Button></center>
-        </Container>
 
-        <Modal show={showModal} onHide={handleClose}>
-          <Modal.Header closeButton>
-            <Modal.Title>Notice</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>Fitur ini masih dalam tahap pengembangan</Modal.Body>
-          <Modal.Footer>
-            <Button variant='secondary' onClick={handleClose}>Close</Button>
-          </Modal.Footer>
-        </Modal>
+          <Container className='mt-4'>
+            <h5>Instagram Post</h5>
+            <InstagramCard/>
+            <div className='space-post'></div>
+          </Container>
+
+          <Modal show={showModal} onHide={handleClose}>
+            <Modal.Header closeButton>
+              <Modal.Title>Notice</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>Fitur ini masih dalam tahap pengembangan</Modal.Body>
+            <Modal.Footer>
+              <Button variant='secondary' onClick={handleClose}>Close</Button>
+            </Modal.Footer>
+          </Modal>
         </div>
         <BottomNavbar/>
     </div>
