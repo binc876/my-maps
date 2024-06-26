@@ -1,4 +1,4 @@
-import { Button, Col, Container, Form, Row } from 'react-bootstrap'
+import { Alert, Button, Col, Container, Form, Modal, Row } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 
 import heroRegistrasi from '../../assets/heroRegistrasi.svg'
@@ -21,6 +21,8 @@ export default function Registrasi() {
   const [password, setPassword] = useState()
 
   const [error, setError] = useState()
+  const [regexError, setRegexError] = useState()
+  const [showModal, setShowModal] = useState(false)
 
   useEffect(() => {
     console.log('Name:', name);
@@ -50,14 +52,26 @@ export default function Registrasi() {
     const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,20}$/
 
     if (!regex.test(valuePass)) {
-      setError('Please pay attention to the rules for writing passwords!')
+      setRegexError('Please pay attention to the rules for writing passwords!')
     } else {
-      setError('')
+      setRegexError('')
     }
   };
 
+  const resetForm = () => {
+    setName('')
+    setGraduationYear('')
+    setPhoneNumber('')
+    setAddress('')
+    setLatitude('')
+    setLongitude('')
+    setEmail('')
+    setPassword('')
+  }
+
   const handleSubmit = (event) => {
     event.preventDefault();
+
     const formData = new FormData();
     formData.append('name', name);
     formData.append('graduation_year', graduationYear);
@@ -68,6 +82,7 @@ export default function Registrasi() {
     formData.append('email', email);
     formData.append('password', password);
     formData.append('password_confirmation', password);
+
     axios({
       "content-type": "multipart/form-data",
       url: env.BACKEND_URL + '/api/user/registration',
@@ -77,10 +92,24 @@ export default function Registrasi() {
       console.log(response)
       localStorage.token = response.token
       localStorage.user = JSON.stringify(response.data)
-      navigate('/dashboard')
-    }).catch((error) => {
+      resetForm()
+    })
+    .then(() => {
+      setShowModal(true)
+    })
+    .catch((error) => {
+      if (error.response.data.message === 'Validation error') {
+        setError('Email is already taken. Please use another email.')
+      } else {
+        setError('Registration failed. Please try again.')
+      }
       console.log(error)
     })
+  }
+
+  const handleClose = () => {
+    setShowModal(false)
+    resetForm()
   }
 
   return (
@@ -92,40 +121,51 @@ export default function Registrasi() {
               <h1>Welcome to Aremanest Club!</h1>
               <p>Register your account</p>
 
+              {error && <Alert variant='danger'>{error}</Alert>}
+
               <Form className='mb-4' onSubmit={handleSubmit}>
                 <Form.Group className='mb-3'>
-                  <Form.Control onInput={handleName} type='text' placeholder='Full name with degree'/>
+                  <Form.Control onInput={handleName} value={name} type='text' placeholder='Full name with degree' required/>
                 </Form.Group>
                 <Form.Group className='mb-3'>
-                  <Form.Control onInput={handleGraduationYear} type='text' placeholder='Graduation year'/>
+                  <Form.Control onInput={handleGraduationYear} value={graduationYear} type='text' placeholder='Graduation year' required/>
                 </Form.Group>
                 <Form.Group className='mb-3'>
-                  <Form.Control onInput={handlePhoneNumber} type='phone' placeholder='Phone number'/>
+                  <Form.Control onInput={handlePhoneNumber} value={phoneNumber} type='phone' placeholder='Phone number' required/>
                 </Form.Group>
                 <Form.Group className='mb-3'>
-                  <Form.Control onInput={handleAddress} type='text' placeholder='Address'/>
+                  <Form.Control onInput={handleAddress} value={address} type='text' placeholder='Address' required/>
                 </Form.Group>
                 <Form.Group className='mb-3'>
                   <Row>
                     <Col>
-                      <Form.Control onInput={handleLatitude} type='text' placeholder='Latitude'/>
+                      <Form.Control onInput={handleLatitude} value={latitude} type='text' placeholder='Latitude' required/>
                     </Col>
                     <Col>
-                      <Form.Control onInput={handleLongitude} type='text' placeholder='Longitude'/>
+                      <Form.Control onInput={handleLongitude} value={longitude} type='text' placeholder='Longitude' required/>
                     </Col>
                   </Row>
                 </Form.Group>
                 <Form.Group className='mb-3'>
-                  <Form.Control onInput={handleEmail} type='email' placeholder='Email'/>
+                  <Form.Control 
+                    onInput={handleEmail} 
+                    value={email} 
+                    type='email' 
+                    placeholder='Email' 
+                    style={{borderColor: error ? 'red' : ''}}
+                    required
+                  />
                 </Form.Group>
                 <Form.Group>
                   <Form.Control
                     onInput={handlePassword}
+                    value={password}
                     type='password'
                     placeholder='Password'
-                    style={{borderColor: error ? 'red' : ''}}
+                    style={{borderColor: regexError ? 'red' : ''}}
+                    required
                   />
-                  {error && <Form.Text id='passwordHelpBlock' style={{color: 'red'}}>{error}<br/></Form.Text>}
+                  {regexError && <Form.Text id='passwordHelpBlock' style={{color: 'red'}}>{regexError}<br/></Form.Text>}
                   <Form.Text id="passwordHelpBlock" muted>
                     Your password must be 8-20 characters long, contain letters and numbers,
                     and must not contain spaces, special characters, or emoji.
@@ -147,6 +187,19 @@ export default function Registrasi() {
             </Col>
           </Row>
         </Container>
+
+        <Modal show={showModal} onHide={() => setShowModal(false)}>
+          <Modal.Header>
+            <Modal.Title>Success</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            Registrasi akun Anda sudah berhasil, silahkan hubungi Admin untuk mendapatkan verifikasi.
+          </Modal.Body>
+          <Modal.Footer>
+            <Button onClick={() => navigate('/')}>Kembali ke halaman awal</Button>
+            <Button onClick={handleClose}>Daftarkan akun baru lagi</Button>
+          </Modal.Footer>
+        </Modal>
       </header>
     </div>
   )

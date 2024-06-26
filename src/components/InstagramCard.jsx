@@ -1,9 +1,9 @@
 import { Card, Col, Container, Row } from 'react-bootstrap'
 
-import post1 from '../../public/post-instagram/post1.jpeg'
-import post2 from '../../public/post-instagram/post2.jpeg'
-import post3 from '../../public/post-instagram/post3.jpeg'
-import post4 from '../../public/post-instagram/post4.jpeg'
+import post1 from '../assets/post-instagram/post1.jpeg'
+import post2 from '../assets/post-instagram/post2.jpeg'
+import post3 from '../assets/post-instagram/post3.jpeg'
+import post4 from '../assets/post-instagram/post4.jpeg'
 
 export const InstagramCard = () => {
     const posts = [
