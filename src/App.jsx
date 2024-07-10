@@ -15,7 +15,7 @@ import { Profile as UserProfile } from './services/API/User.jsx'
 
 function App() {
   return (
-    <Router>
+    <Router basename='/'>
       <Routes>
         <Route path='/' Component={LandingPage}/>
         <Route path='/registrasi' Component={Registrasi}/>
