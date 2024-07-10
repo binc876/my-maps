@@ -1,4 +1,4 @@
 export const env = {
-    BACKEND_URL: 'https://backend.anesthesiology-brawijaya.cloud',
+    BACKEND_URL: 'http://anesthesiology-brawijaya.cloud:3000',
     BASE_URL: 'https://anesthesiology-brawijaya.cloud'
 }
