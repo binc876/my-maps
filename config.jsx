@@ -1,4 +1,4 @@
 export const env = {
-    BACKEND_URL: import.meta.env.BACKEND_URL,
-    BASE_URL: import.meta.env.FRONTEND_URL
+    BACKEND_URL: 'http://anesthesiology-brawijaya:3000',
+    BASE_URL: 'https://anesthesiology-brawijaya.cloud'
 }
