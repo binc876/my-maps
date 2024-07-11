@@ -25,6 +25,11 @@ export default function LoginAdmin() {
     axios.post(env.BACKEND_URL + '/api/admin/login', {
       email: email,
       password: password
+    }, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }
     }).then((response) => {
       console.log(response)
       let data = response.data.data
