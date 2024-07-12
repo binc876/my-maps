@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { env } from '../../config'
 import L, { Icon } from 'leaflet'
+import marker from '../assets/marker.png'
 
 export default function Map() {
     const [alumniDataApi, setAlumniDataApi] = useState([])
@@ -23,13 +24,12 @@ export default function Map() {
             })
     }, [])
 
-    // const marker = new Icon({
-    //     iconUrl: "/assets/marker-icon.png",
-    //     iconSize: [30, 125],
-    //     iconAnchor: [40, 90],
-    //     popupAnchor: [-25, -40],
-    //   });
-    L.Icon.Default.imagePath = "assets/";
+    const mark = new Icon({
+        iconUrl: marker,
+        iconSize: [30, 125],
+        iconAnchor: [40, 90],
+        popupAnchor: [-25, -40],
+    });
 
     return (
         <MapContainer center={[-7.955016997867799, 112.61331307869033]} zoom={5} style={{height: '92vh', width: '100%'}}>
@@ -37,7 +37,7 @@ export default function Map() {
                 url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
             />
             {alumniDataApi.map((alumni, idx) => (
-                <Marker key={idx} position={[alumni.user_detail.lat, alumni.user_detail.long]}>
+                <Marker key={idx} icon={mark} position={[alumni.user_detail.lat, alumni.user_detail.long]}>
                     <Popup>
                         <Card style={{width: '15rem'}}>
                             <Card.Img variant='top' src={alumni.user_detail.image_url}/>
