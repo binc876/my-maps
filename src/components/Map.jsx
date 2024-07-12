@@ -5,8 +5,8 @@ import './Component.css'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { env } from '../../config'
-import L, { Icon } from 'leaflet'
-import marker from '../assets/marker.png'
+import { Icon } from 'leaflet'
+import marker from '../../src/assets/marker-icon.png'
 
 export default function Map() {
     const [alumniDataApi, setAlumniDataApi] = useState([])
@@ -26,9 +26,7 @@ export default function Map() {
 
     const mark = new Icon({
         iconUrl: marker,
-        iconSize: [30, 125],
-        iconAnchor: [40, 90],
-        popupAnchor: [-25, -40],
+        iconSize: [15, 25],
     });
 
     return (
