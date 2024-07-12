@@ -36,7 +36,7 @@ export const AlumniProvider = ({children}) => {
     useEffect(() => {
         fetchPendingAlumni()
         fetchAlumniList()
-    })
+    }, [])
 
     const verifyAlumni = (id) => {
         axios.put(env.BACKEND_URL + `/api/admin/user/approve-user-registration/${id}`, {}, {
