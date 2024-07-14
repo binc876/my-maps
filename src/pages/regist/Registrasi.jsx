@@ -19,9 +19,11 @@ export default function Registrasi() {
   const [longitude, setLongitude] = useState()
   const [email, setEmail] = useState()
   const [password, setPassword] = useState()
+  const [image, setImage] = useState(null)
 
   const [error, setError] = useState()
   const [regexError, setRegexError] = useState()
+  const [fileSizeError, setFileSizeError] = useState('')
   const [showModal, setShowModal] = useState(false)
 
   useEffect(() => {
@@ -43,13 +45,23 @@ export default function Registrasi() {
   const handleLatitude = (event) => setLatitude(event.target.value);
   const handleLongitude = (event) => setLongitude(event.target.value);
   const handleEmail = (event) => setEmail(event.target.value);
+  const handleImage = (event) => {
+    const valueImg = event.target.files[0]
+    if (valueImg.size > 1048576) {
+      setFileSizeError('File size must be less than 1MB')
+      setImage(null)
+    } else {
+      setFileSizeError('')
+      setImage(valueImg)
+    }
+  }
 
   const handlePassword = (event) => {
     const valuePass = event.target.value
     setPassword(valuePass)
 
     //validasi password
-    const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,20}$/
+    const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,20}$/
 
     if (!regex.test(valuePass)) {
       setRegexError('Please pay attention to the rules for writing passwords!')
@@ -67,6 +79,7 @@ export default function Registrasi() {
     setLongitude('')
     setEmail('')
     setPassword('')
+    setImage('')
   }
 
   const handleSubmit = (event) => {
@@ -82,6 +95,9 @@ export default function Registrasi() {
     formData.append('email', email);
     formData.append('password', password);
     formData.append('password_confirmation', password);
+    if (image) {
+      formData.append('image_url', image)
+    }
 
     axios({
       "content-type": "multipart/form-data",
@@ -124,8 +140,13 @@ export default function Registrasi() {
               {error && <Alert variant='danger'>{error}</Alert>}
 
               <Form className='mb-4' onSubmit={handleSubmit}>
-                <Form.Group className='mb-3'>
+                <Form.Group className='mb-2'>
                   <Form.Control onInput={handleName} value={name} type='text' placeholder='Full name with degree' required/>
+                </Form.Group>
+                <Form.Group className='mb-3'>
+                  <Form.Text>Photo profile</Form.Text>
+                  <Form.Control onChange={handleImage} type='file' required/>
+                  {fileSizeError && <Form.Text style={{color: 'red'}}>{fileSizeError}</Form.Text>}
                 </Form.Group>
                 <Form.Group className='mb-3'>
                   <Form.Control onInput={handleGraduationYear} value={graduationYear} type='text' placeholder='Graduation year' required/>
@@ -167,7 +188,7 @@ export default function Registrasi() {
                   />
                   {regexError && <Form.Text id='passwordHelpBlock' style={{color: 'red'}}>{regexError}<br/></Form.Text>}
                   <Form.Text id="passwordHelpBlock" muted>
-                    Your password must be 8-20 characters long, contain letters and numbers,
+                    Your password must be 6-20 characters long, contain letters and numbers,
                     and must not contain spaces, special characters, or emoji.
                   </Form.Text>
                 </Form.Group>

@@ -73,7 +73,7 @@ export default function ProfileAlumni() {
             <center><h4 className='mb-4'>Account Information</h4></center>
             <center>
               <Image 
-                src={profile.user_detail.image_url} 
+                src={env.BACKEND_URL + '/' + profile.user_detail.image_url} 
                 roundedCircle width={100} height={100}
                 onError={(e) => {
                   e.target.onError = null
