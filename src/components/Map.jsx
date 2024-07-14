@@ -7,7 +7,6 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { env } from '../../config'
 import { Icon } from 'leaflet'
-import marker from '../../src/assets/marker-icon.png'
 
 export default function Map() {
     const [alumniDataApi, setAlumniDataApi] = useState([])
@@ -26,8 +25,12 @@ export default function Map() {
     }, [])
 
     const mark = new Icon({
-        iconUrl: marker,
-        iconSize: [15, 25],
+        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
+        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41]
     });
 
     return (
