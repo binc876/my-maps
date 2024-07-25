@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { env } from '../../config'
 import { Icon } from 'leaflet'
+import { Whatsapp } from 'react-bootstrap-icons'
 
 export default function Map() {
     const [alumniDataApi, setAlumniDataApi] = useState([])
@@ -33,6 +34,13 @@ export default function Map() {
         shadowSize: [41, 41]
     });
 
+    const formatPhoneNumber = (number) => {
+        if (number.startsWith('0')) {
+            return '62' + number.slice(1)
+        }
+        return number
+    }
+
     return (
         <MapContainer center={[-7.955016997867799, 112.61331307869033]} zoom={5} style={{height: '92vh', width: '100%'}}>
             <TileLayer
@@ -54,6 +62,11 @@ export default function Map() {
                                 <Card.Title>{alumni.name}</Card.Title>
                                 <Card.Text>{alumni.user_detail.graduation_year} | {alumni.user_detail.address}</Card.Text>
                             </Card.Body>
+                            <Card.Footer>
+                                <a href={`https://wa.me/${formatPhoneNumber(alumni.user_detail.mobile)}`} target='_blank' rel='noopener noreferrer'>
+                                    <Whatsapp size={25}/>
+                                </a>
+                            </Card.Footer>
                         </Card>
                     </Popup>
                 </Marker>

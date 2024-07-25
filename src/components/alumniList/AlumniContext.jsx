@@ -58,12 +58,28 @@ export const AlumniProvider = ({children}) => {
                 authorization: 'Bearer ' + localStorage.getItem('token')
             }
         })
-        .then((response) => response.data.data)
+        .then((response) => {
+            response.data.data
+            fetchPendingAlumni()
+        })
         .catch((error) => console.log('Error rejecting alumni: ', error))
     }
 
+    const deleteAlumni = (id) => {
+        axios.delete(env.BACKEND_URL + `/api/admin/user/delete-registered-user/${id}`, {
+            headers: {
+                authorization: 'Bearer ' + localStorage.getItem('token')
+            }
+        })
+        .then((response) => {
+            response.data.data
+            fetchAlumniList()
+        })
+        .catch((error) => console.log('Error deleting alumni: ', error))
+    }
+
     return (
-        <AlumniContext.Provider value={{ pendingAlumni, alumniList, verifyAlumni, rejectAlumni }}>
+        <AlumniContext.Provider value={{ pendingAlumni, alumniList, verifyAlumni, rejectAlumni, deleteAlumni }}>
             {children}
         </AlumniContext.Provider>
     )

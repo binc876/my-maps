@@ -28,6 +28,7 @@ export default function Registrasi() {
 
   useEffect(() => {
     console.log('Name:', name);
+    console.log('Image: ', image);
     console.log('Graduation Year:', graduationYear);
     console.log('Phone Number:', phoneNumber);
     console.log('Address:', address);
@@ -35,7 +36,7 @@ export default function Registrasi() {
     console.log('Longitude:', longitude);
     console.log('Email:', email);
     console.log('Password:', password);
-  }, [name, graduationYear, phoneNumber, address, latitude, longitude, email, password])
+  }, [name, image, graduationYear, phoneNumber, address, latitude, longitude, email, password])
 
   // handlers
   const handleName = (event) => setName(event.target.value);
@@ -139,31 +140,31 @@ export default function Registrasi() {
 
               {error && <Alert variant='danger'>{error}</Alert>}
 
-              <Form className='mb-4' onSubmit={handleSubmit}>
+              <Form className='mb-4' onSubmit={handleSubmit} autoComplete='off'>
                 <Form.Group className='mb-2'>
-                  <Form.Control onInput={handleName} value={name} type='text' placeholder='Full name with degree' required/>
+                  <Form.Control onInput={handleName} value={name} type='text' placeholder='Full name with degree' required autoComplete='off'/>
                 </Form.Group>
                 <Form.Group className='mb-3'>
                   <Form.Text>Photo profile</Form.Text>
-                  <Form.Control onChange={handleImage} type='file' required/>
+                  <Form.Control onChange={handleImage} type='file' required autoComplete='off'/>
                   {fileSizeError && <Form.Text style={{color: 'red'}}>{fileSizeError}</Form.Text>}
                 </Form.Group>
                 <Form.Group className='mb-3'>
-                  <Form.Control onInput={handleGraduationYear} value={graduationYear} type='text' placeholder='Graduation year' required/>
+                  <Form.Control onInput={handleGraduationYear} value={graduationYear} type='text' placeholder='Graduation year' required autoComplete='off'/>
                 </Form.Group>
                 <Form.Group className='mb-3'>
-                  <Form.Control onInput={handlePhoneNumber} value={phoneNumber} type='phone' placeholder='Phone number' required/>
+                  <Form.Control onInput={handlePhoneNumber} value={phoneNumber} type='phone' placeholder='Phone number' required autoComplete='off'/>
                 </Form.Group>
                 <Form.Group className='mb-3'>
-                  <Form.Control onInput={handleAddress} value={address} type='text' placeholder='Address' required/>
+                  <Form.Control onInput={handleAddress} value={address} type='text' placeholder='Address' required autoComplete='off'/>
                 </Form.Group>
                 <Form.Group className='mb-3'>
                   <Row>
                     <Col>
-                      <Form.Control onInput={handleLatitude} value={latitude} type='text' placeholder='Latitude' required/>
+                      <Form.Control onInput={handleLatitude} value={latitude} type='text' placeholder='Latitude' required autoComplete='off'/>
                     </Col>
                     <Col>
-                      <Form.Control onInput={handleLongitude} value={longitude} type='text' placeholder='Longitude' required/>
+                      <Form.Control onInput={handleLongitude} value={longitude} type='text' placeholder='Longitude' required autoComplete='off'/>
                     </Col>
                   </Row>
                 </Form.Group>
@@ -175,6 +176,7 @@ export default function Registrasi() {
                     placeholder='Email' 
                     style={{borderColor: error ? 'red' : ''}}
                     required
+                    autoComplete='off'
                   />
                 </Form.Group>
                 <Form.Group>
@@ -185,6 +187,7 @@ export default function Registrasi() {
                     placeholder='Password'
                     style={{borderColor: regexError ? 'red' : ''}}
                     required
+                    autoComplete='new-password'
                   />
                   {regexError && <Form.Text id='passwordHelpBlock' style={{color: 'red'}}>{regexError}<br/></Form.Text>}
                   <Form.Text id="passwordHelpBlock" muted>

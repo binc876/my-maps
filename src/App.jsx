@@ -11,6 +11,7 @@ import DashboardAdmin from './pages/admin/DashboardAdmin'
 import ProfileAlumni from './pages/ProfileAlumni'
 import ProfileAdmin from './pages/admin/ProfileAdmin'
 import ListAlumni from './pages/admin/ListAlumni'
+import VerifyAlumni from './pages/admin/VerifyAlumni.jsx'
 import { Profile as UserProfile } from './services/API/User.jsx'
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
         <Route path='/dashboard-admin' Component={DashboardAdmin}/>
         <Route path='/profile-admin' Component={ProfileAdmin}/>
         <Route path='/list-alumni' Component={ListAlumni}/>
+        <Route path='/verify-alumni' Component={VerifyAlumni}/>
       </Routes>
     </Router>
   )

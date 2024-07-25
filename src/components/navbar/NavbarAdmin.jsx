@@ -17,6 +17,11 @@ const navMenu = [
   },
   {
     id: 3,
+    path: 'verify-alumni',
+    menu: 'Verify Alumni'
+  },
+  {
+    id: 4,
     path: 'profile-admin',
     menu: 'Profile'
   }
