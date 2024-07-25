@@ -172,21 +172,21 @@ export default function ProfileAlumni() {
               {
                 isEditing ? (
                   <Image 
-                    src={selectedImage ? selectedImage : env.BACKEND_ASSET_URL + '/' + profile.user_detail.image_url} 
+                    src={selectedImage ? selectedImage : env.BACKEND_URL + '/' + profile.user_detail.image_url} 
                     roundedCircle width={100} height={100}
-                    // onError={(e) => {
-                    //   e.target.onError = null
-                    //   e.target.src = 'https://i.pinimg.com/564x/28/c2/0b/28c20b3bf4e1a48334b2278d3c7fb447.jpg'
-                    // }}
+                    onError={(e) => {
+                      e.target.onError = null
+                      e.target.src = 'https://i.pinimg.com/564x/28/c2/0b/28c20b3bf4e1a48334b2278d3c7fb447.jpg'
+                    }}
                   />
                 ) : (
                   <Image 
-                    src={env.BACKEND_ASSET_URL + '/' + profile.user_detail.image_url} 
+                    src={env.BACKEND_URL + '/' + profile.user_detail.image_url} 
                     roundedCircle width={100} height={100}
-                    // onError={(e) => {
-                    //   e.target.onError = null
-                    //   e.target.src = 'https://i.pinimg.com/564x/28/c2/0b/28c20b3bf4e1a48334b2278d3c7fb447.jpg'
-                    // }}
+                    onError={(e) => {
+                      e.target.onError = null
+                      e.target.src = 'https://i.pinimg.com/564x/28/c2/0b/28c20b3bf4e1a48334b2278d3c7fb447.jpg'
+                    }}
                   />
                 )
               }
