@@ -42,7 +42,7 @@ export default function AlumniTable() {
             <tr key={alumni.id}>
               <td>
                 <Image className='table-image'
-                  src={env.BACKEND_URL + '/' + alumni.user_detail.image_url} 
+                  src={env.BACKEND_ASSET_URL + '/' + alumni.user_detail.image_url} 
                   onError={(e) => {
                     e.target.onError = null
                     e.target.src = 'https://i.pinimg.com/564x/28/c2/0b/28c20b3bf4e1a48334b2278d3c7fb447.jpg'
