@@ -317,7 +317,7 @@ export default function ProfileAlumni() {
             {
               isEditing ? (
                 <center>
-                  <Button variant='secondary' onClick={handleCancelEdit}>Cancel</Button>
+                  <Button variant='secondary' onClick={handleCancelEdit}>Cancel</Button>{' '}
                   <Button variant='primary' onClick={handleSave}>Save</Button>
                 </center>
               ) : (
